@@ -1,0 +1,45 @@
+.page-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.details-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3em;
+}
+
+.question-header {
+  color: #242729;
+  font-size: 24px;
+}
+
+.detail-pane {
+  display: flex;
+  flex-direction: row;
+  margin: 1em;
+}
+
+.vote-count {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 2em;
+  width: 46px;
+}
+
+.details-body {
+  display: flex;
+  flex-direction: column;
+  margin: 0.2em;
+  width: 452px;
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
