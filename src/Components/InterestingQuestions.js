@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../styling/InterestingQuestions.css";
 import { Link } from "react-router-dom";
+import Axios from "axios";
 
 class InterestingQuestions extends Component {
   constructor(props) {
@@ -18,11 +19,15 @@ class InterestingQuestions extends Component {
 
   // GET latest questions from QuestionsTable
   getQuestions = () => {
-    fetch("https://suncoast-overflow.herokuapp.com/api/questions")
-      .then(resp => resp.json())
-      .then(questions => {
-        console.log(questions);
-        this.setState({ data: questions });
+    Axios.get("https://suncoast-overflow.herokuapp.com/api/questions")
+      .then(questionData => {
+        console.log(questionData.data);
+        this.setState({
+          data: questionData.data
+        });
+      })
+      .catch(err => {
+        console.log(err);
       });
   };
 
@@ -33,23 +38,27 @@ class InterestingQuestions extends Component {
 
     // }
     const PATCH_UP_URL = `https://suncoast-overflow.herokuapp.com/api/questions/up/${id}`;
-    fetch(PATCH_UP_URL, {
+    Axios.patch(PATCH_UP_URL, {
       method: "PATCH",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify({
         upVoteQuestion: this.state.upVote
       })
     })
-      .then(resp => resp.json())
       .then(_ => {
         this.getQuestions();
+      })
+      .catch(err => {
+        console.log(err);
       });
   };
 
   // PATCH down vote to question to QuestionsTable
   handleDownVoteQuestion = id => {
     const PATCH_DOWN_URL = `https://suncoast-overflow.herokuapp.com/api/questions/down/${id}`;
-    fetch(PATCH_DOWN_URL, {
+    Axios.patch(PATCH_DOWN_URL, {
       // mode: "no-cors",
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
@@ -57,9 +66,11 @@ class InterestingQuestions extends Component {
         upVoteQuestion: this.state.downVote
       })
     })
-      .then(resp => resp.json())
       .then(_ => {
         this.getQuestions();
+      })
+      .catch(err => {
+        console.log(err);
       });
   };
 
