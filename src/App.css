@@ -183,11 +183,16 @@
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Tablets, iPads, and Kindles */
+@media (max-device-width: 1024px) and (min-device-width: 415px) {
+}
+
+/* Mobile Devices */
+@media (max-device-width: 414px) and (min-device-width: 320px) {
+  .left-sidebar {
+    display: none;
   }
-  to {
-    transform: rotate(360deg);
+  .right-sidebar {
+    display: none;
   }
 }
